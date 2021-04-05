@@ -1,38 +1,89 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHTML = (answers) =>
-  `This is a markdown file`;
+  `
+  # ${answers.title}
+
+  ## Description
+  ${answers.description}
+  ## Table of Contents 
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  ## Installation
+  To install necessary dependencies, run the following command:
+
+  \`\`\`
+  ${answers.installation}
+  \`\`\`
+  ## Usage
+  ${answers.usage}
+  ## License
+  This project is licensed under the ${answers.license} license.
+  [![License: {answers.license}](https://img.shields.io/badge/License-${answers.license}-blue.svg)](https://opensource.org/licenses/MIT)
+  ## Contributing
+  ${answers.contributing}
+  ## Tests
+  To run tests, run the following command:
+  \`\`\`
+  ${answers.tests}
+  \`\`\`
+  ## Questions
+  If you have any questions about the repo, open an issue or contact me directly at [${answers.email}](${answers.email}). You can find more of my work at [${answers.github}](https://github.com/${answers.github}/).`;
 inquirer
   .prompt([
     {
       type: 'input',
-      name: 'name',
-      message: 'What is your name?',
+      name: 'title',
+      message: 'What is the title of your project?',
+      default: 'Example Project 1'
     },
     {
       type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
+      name: 'description',
+      message: 'What is the description of your project?'
     },
     {
       type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
+      name: 'installation',
+      message: 'What are the installation instructions for your project?',
+      default: 'npm i',
     },
     {
       type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
+      name: 'usage',
+      message: 'What is the usage information for your project?',
+    },
+    {
+      type: 'input',
+      name: 'contributing',
+      message: 'What are the contribution guidelines for your project?',
+    },
+    {
+      type: 'input',
+      name: 'tests',
+      message: 'What command should be run to run tests?',
+      default: 'npm test'
+    },
+    {
+      type: 'list',
+      name: 'license',
+      message: 'What license pertains to this project?',
+      choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+      default: 'MIT'
     },
     {
       type: 'input',
       name: 'github',
-      message: 'Enter your GitHub Username',
+      message: 'Enter your GitHub Username.',
     },
     {
       type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
+      name: 'email',
+      message: 'Enter your email address.',
     },
   ])
   .then((answers) => {
