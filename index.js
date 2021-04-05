@@ -22,8 +22,8 @@ const generateHTML = (answers) =>
   ## Usage
   ${answers.usage}
   ## License
-  This project is licensed under the ${answers.license} license.
-  [![License: {answers.license}](https://img.shields.io/badge/License-${answers.license}-blue.svg)](https://opensource.org/licenses/MIT)
+  This project is licensed under the ${answers.license} license. 
+  [![License: {answers.license}](https://img.shields.io/badge/License-${answers.license.split(' ').join('%20')}-blue.svg)](https://opensource.org/licenses/${answers.license.split(' ').join('-')})
   ## Contributing
   ${answers.contributing}
   ## Tests
@@ -32,7 +32,7 @@ const generateHTML = (answers) =>
   ${answers.tests}
   \`\`\`
   ## Questions
-  If you have any questions about the repo, open an issue or contact me directly at [${answers.email}](${answers.email}). You can find more of my work at [${answers.github}](https://github.com/${answers.github}/).`;
+  If you have any questions about the repo, open an issue or contact me directly at [${answers.email}](mailto:${answers.email}). You can find more of my work at [${answers.github}](https://github.com/${answers.github}/).`;
 inquirer
   .prompt([
     {
@@ -74,6 +74,12 @@ inquirer
       message: 'What license pertains to this project?',
       choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
       default: 'MIT'
+    },
+    {
+      type: 'input',
+      name: 'url',
+      message: 'Enter license URL',
+      when: (answers) => answers.license === 'MIT'
     },
     {
       type: 'input',
