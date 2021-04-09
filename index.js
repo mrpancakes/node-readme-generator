@@ -68,7 +68,7 @@ function init() {
     .prompt(questions)
     .then((data) => {
         console.log('generated-readme.md has been created!')
-        writeToFile('generated-readme9.md', data);
+        writeToFile('generated-readme.md', data);
     })
 }
 
