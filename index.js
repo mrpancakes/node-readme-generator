@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./util/generateMarkdown');
+const generateMarkdown = require('./generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -42,7 +42,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license pertains to this project?',
-        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+        choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3 Clause', 'None'],
         default: 'MIT'
       },
       {
@@ -68,7 +68,7 @@ function init() {
     .prompt(questions)
     .then((data) => {
         console.log('generated-readme.md has been created!')
-        writeToFile('generated-readme.md', data);
+        writeToFile('generated-readme9.md', data);
     })
 }
 
